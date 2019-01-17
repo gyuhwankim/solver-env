@@ -1,6 +1,11 @@
 package commands
 
-import "gopkg.in/urfave/cli.v1"
+import (
+	"fmt"
+	"github.com/otiai10/copy"
+	"gopkg.in/urfave/cli.v1"
+	"os"
+)
 
 func New() cli.Command {
 	return cli.Command{
@@ -8,12 +13,9 @@ func New() cli.Command {
 		Usage:   "Create new environment ex) ps-cli new <options> <src>",
 		Action: func(context *cli.Context) error {
 			template := context.String("templates")
-			src := context.Args().Get(0)
+			path := context.Args().Get(0)
 
-			makeDir(template, src)
-			copyTemplateFiles(template, src)
-
-			return nil
+			return createEnvironment(template, path)
 		},
 		Flags: []cli.Flag{
 			cli.StringFlag{
@@ -25,11 +27,24 @@ func New() cli.Command {
 	}
 }
 
-func makeDir(template, src string) {
+func createEnvironment(template, path string) error {
+	src := fmt.Sprintf("templates/%s", template)
+	dest := fmt.Sprintf("src/%s", path)
 
+	if !isExistsDir(src) {
+		return fmt.Errorf(fmt.Sprintf("Does not exists template on %s", src))
+	}
+
+	copyDir(src, dest)
+
+	return nil
 }
 
-func copyTemplateFiles(template, src string) {
-
+func isExistsDir(path string) bool {
+	_, err := os.Stat(path)
+	return !os.IsNotExist(err)
 }
 
+func copyDir(src, dest string) error {
+	return copy.Copy(src, dest)
+}
