@@ -36,7 +36,7 @@ func createApplication() *cli.App {
 				cli.StringFlag{
 					Name:  "templates, t",
 					Value: "cpp",
-					Usage: "Choice for the template",
+					Usage: "Select env template",
 				},
 			},
 		},
