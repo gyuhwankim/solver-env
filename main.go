@@ -17,8 +17,8 @@ func main() {
 
 func createApplication() *cli.App {
 	app := cli.NewApp()
-	app.Name = "ps-cli"
-	app.Usage = "Support to create environment where can solve problem"
+	app.Name = "solver-env"
+	app.Usage = "Support to provide environment where can solve problem"
 	app.Commands = []cli.Command{
 		{
 			Name:    "new",
@@ -26,7 +26,6 @@ func createApplication() *cli.App {
 			Action: func(context *cli.Context) error {
 				template := context.String("templates")
 				src := context.Args().Get(0)
-
 
 				makeWorkspace(template, src)
 				copyTemplateFiles(template, src)
