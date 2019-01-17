@@ -18,7 +18,7 @@ func main() {
 func createApplication() *cli.App {
 	app := cli.NewApp()
 	app.Name = "solver-env"
-	app.Usage = "Support to provide environment where can solve problem"
+	app.Usage = "Provide an environment where can solve problems"
 	app.Commands = []cli.Command{
 		{
 			Name:    "new",
