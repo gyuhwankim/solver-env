@@ -9,8 +9,8 @@ import (
 
 func New() cli.Command {
 	return cli.Command{
-		Name:    "new",
-		Usage:   "Create new environment ex) ps-cli new <options> <src>",
+		Name:  "new",
+		Usage: "Create new environment ex) ps-cli new <options> <src>",
 		Action: func(context *cli.Context) error {
 			template := context.String("templates")
 			path := context.Args().Get(0)
