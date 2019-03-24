@@ -1,6 +1,7 @@
 package main
 
 import (
+	"github.com/gyuhwankim/solverenv/command"
 	"gopkg.in/urfave/cli.v1"
 	"log"
 	"os"
@@ -19,7 +20,7 @@ func createApplication() *cli.App {
 	app.Name = "solverenv"
 	app.Usage = "Provide an environment where can solve problems"
 	app.Commands = []cli.Command{
-		newNewCommand(),
+		command.CreateNew(),
 	}
 
 	return app
