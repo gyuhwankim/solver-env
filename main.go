@@ -1,7 +1,7 @@
 package main
 
 import (
-	"github.com/gyuhwankim/ps-cli/commands"
+	"github.com/gyuhwankim/solverenv/commands"
 	"gopkg.in/urfave/cli.v1"
 	"log"
 	"os"
@@ -17,7 +17,7 @@ func main() {
 
 func createApplication() *cli.App {
 	app := cli.NewApp()
-	app.Name = "solver-env"
+	app.Name = "solverenv"
 	app.Usage = "Provide an environment where can solve problems"
 	app.Commands = []cli.Command{
 		commands.New(),

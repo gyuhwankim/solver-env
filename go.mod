@@ -1,4 +1,4 @@
-module github.com/gyuhwankim/ps-cli
+module github.com/gyuhwankim/solverenv
 
 require (
 	github.com/otiai10/copy v0.0.0-20180813032824-7e9a647135a1
