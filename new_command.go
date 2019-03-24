@@ -1,4 +1,4 @@
-package commands
+package main
 
 import (
 	"fmt"
@@ -7,10 +7,13 @@ import (
 	"os"
 )
 
-func New() cli.Command {
+const CommandName = "new"
+const CommandUsage = "Create new environment ex) solverenv new <options> <src>"
+
+func newNewCommand() cli.Command {
 	return cli.Command{
-		Name:  "new",
-		Usage: "Create new environment ex) ps-cli new <options> <src>",
+		Name:  CommandName,
+		Usage: CommandUsage,
 		Action: func(context *cli.Context) error {
 			template := context.String("templates")
 			path := context.Args().Get(0)
