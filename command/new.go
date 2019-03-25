@@ -30,6 +30,7 @@ func CreateNew() cli.Command {
 	}
 }
 
+// Create new environment where user will work.
 func createEnvironment(template, path string) error {
 	src := fmt.Sprintf("templates/%s", template)
 	dest := fmt.Sprintf("src/%s", path)
