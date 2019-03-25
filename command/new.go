@@ -49,6 +49,7 @@ func isExistsDir(path string) bool {
 	return !os.IsNotExist(err)
 }
 
+// Copy all files from src directory to dest directory.
 func copyDir(src, dest string) error {
 	return copy.Copy(src, dest)
 }
