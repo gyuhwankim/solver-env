@@ -7,6 +7,7 @@ import (
 var appData = map[string]string{
 	"Name": "solverenv",
 	"Usage": "Provide an environment where can solve problems",
+	"Version": "v0.1.0",
 }
 
 type Runner interface {
@@ -25,8 +26,12 @@ func NewApp() Runner {
 	cliEngine := cli.NewApp()
 	cliEngine.Name = appData["Name"]
 	cliEngine.Usage = appData["Usage"]
+	cliEngine.Version = appData["Version"]
+	cliEngine.Commands = []cli.Command{
+				
+	}
 	
-	app := App{cliEngine}
+	app := App{cli: cliEngine}
 	
 	return &app	
 }
