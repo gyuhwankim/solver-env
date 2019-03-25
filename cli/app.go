@@ -1,6 +1,7 @@
 package cli
 
 import (
+	"errors"
 	"gopkg.in/urfave/cli.v1"
 )
 
@@ -9,6 +10,8 @@ var appData = map[string]string{
 	"Usage": "Provide an environment where can solve problems",
 	"Version": "v0.1.0",
 }
+
+var ErrEmptyCliEngine = errors.New("App not contain cli engine.")
 
 type Runner interface {
 	Run(args []string) error
@@ -19,6 +22,10 @@ type App struct {
 }
 
 func (app *App) Run(args []string) error {
+	if app.cli == nil {
+		return ErrEmptyCliEngine		
+	}
+	
 	return app.cli.Run(args)	
 }
 
