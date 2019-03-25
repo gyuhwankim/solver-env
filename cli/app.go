@@ -11,6 +11,10 @@ var appData = map[string]string{
 	"Version": "v0.1.0",
 }
 
+var appCommands = []Commander{
+	
+} 
+
 var ErrEmptyCliEngine = errors.New("App not contain cli engine.")
 
 type Runner interface {
@@ -34,8 +38,10 @@ func NewApp() Runner {
 	cliEngine.Name = appData["Name"]
 	cliEngine.Usage = appData["Usage"]
 	cliEngine.Version = appData["Version"]
-	cliEngine.Commands = []cli.Command{
-				
+	cliEngine.Commands = []cli.Command{}
+
+	for _, command := range appCommands {
+		cliEngine.Commands = append(cliEngine.Commands, command.CliCommand())
 	}
 	
 	app := App{cli: cliEngine}
