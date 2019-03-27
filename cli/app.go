@@ -12,7 +12,7 @@ var appData = map[string]string{
 }
 
 var appCommands = []Commander{
-	
+	newInitCommand(),
 } 
 
 var ErrEmptyCliEngine = errors.New("App not contain cli engine.")
