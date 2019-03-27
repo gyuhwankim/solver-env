@@ -5,15 +5,15 @@ import (
 )
 
 type Commander interface {
-	MetaData() map[string]string
+	MetaData(key string) string
 	Flags() []cli.Flag
 	Action(ctx *cli.Context) error
 }
 
 func createCliCommand(cmd Commander) cli.Command {
 	return cli.Command{
-		Name: cmd.MetaData()["Name"],
-		Usage: cmd.MetaData()["Usage"],
+		Name: cmd.MetaData("Name"),
+		Usage: cmd.MetaData("Usage"),
 		Flags: cmd.Flags(),
 		Action: cmd.Action,
 	}
