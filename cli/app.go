@@ -41,7 +41,7 @@ func NewApp() Runner {
 	cliEngine.Commands = []cli.Command{}
 
 	for _, command := range appCommands {
-		cliEngine.Commands = append(cliEngine.Commands, command.CliCommand())
+		cliEngine.Commands = append(cliEngine.Commands, createCliCommand(command))
 	}
 	
 	app := App{cli: cliEngine}
