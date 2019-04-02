@@ -70,20 +70,20 @@ func NewApp() Runner {
 
 	updateCliMetadata(app)
 
-	return &app
+	return app
 }
 
 func newAppInstance(cliEngine *cli.App, appMetadata map[string]string) *App {
-	return App{
+	return &App{
 		cli:      cliEngine,
 		metaData: appMetadata,
 	}
 }
 
 func updateCliMetadata(app *App) error {
-	cli.Name = app.Name()
-	cli.Usage = app.Usage()
-	cli.Version = app.Version()
+	app.cli.Name, _ = app.Name()
+	app.cli.Usage, _ = app.Usage()
+	app.cli.Version, _ = app.Version()
 
 	return nil
 }
