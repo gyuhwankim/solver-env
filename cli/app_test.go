@@ -25,7 +25,9 @@ func TestUpdateAppMetadata(t *testing.T) {
 	}
 
 	cliEngine := cli.NewApp()
-	if err := updateAppMetadata(cliEngine, metaData); err != nil {
+	app := newAppInstance(cliEngine, metaData)
+	
+	if err := updateCliMetadata(app); err != nil {
 		t.Errorf("Occurred error: %s", err)
 	}
 
