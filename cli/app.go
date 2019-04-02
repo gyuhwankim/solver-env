@@ -67,25 +67,24 @@ func (app *App) Run(args []string) error {
 }
 
 func NewApp() Runner {
-	cliEngine := cli.NewApp()
-	cliEngine.Name = appData["Name"]
-	cliEngine.Usage = appData["Usage"]
-	cliEngine.Version = appData["Version"]
-	cliEngine.Commands = []cli.Command{}
-
-	for _, command := range appCommands {
-		cliEngine.Commands = append(cliEngine.Commands, createCliCommand(command))
-	}
-
-	app := App{cli: cliEngine}
+	app := newAppInstance(cli.NewApp(), appData)
+	
+	updateCliMetadata(app)
 
 	return &app
 }
 
-func updateAppMetadata(cli *cli.App, appMetadata map[string]string) error {
-	cli.Name = appMetadata["Name"]
-	cli.Usage = appMetadata["Usage"]
-	cli.Version = appMetadata["Version"]
+func newAppInstance(cliEngine *cli.App, appMetadata map[string]string) *App {
+	return App{
+		cli: cliEngine,
+		metaData: appMetadata,	
+	}
+}
+
+func updateCliMetadata(app *App) error {
+	cli.Name = app.Name()
+	cli.Usage = app.Usage()
+	cli.Version = app.Version()
 
 	return nil
 }
