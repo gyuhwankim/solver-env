@@ -6,8 +6,8 @@ import (
 )
 
 const (
-	DATA_NAME = "Name"
-	DATA_USAGE = "Usage"
+	DATA_NAME    = "Name"
+	DATA_USAGE   = "Usage"
 	DATA_VERSION = "Version"
 )
 
@@ -27,18 +27,17 @@ var (
 	ErrNotContainItem = errors.New("Not contain item in collection.")
 )
 
-
 type Runner interface {
 	Run(args []string) error
 }
 
 type App struct {
-	cli *cli.App
+	cli      *cli.App
 	metaData map[string]string
 }
 
 func (app App) Name() (string, error) {
-	return app.getData(DATA_NAME)	
+	return app.getData(DATA_NAME)
 }
 
 func (app App) Usage() (string, error) {
@@ -46,7 +45,7 @@ func (app App) Usage() (string, error) {
 }
 
 func (app App) Version() (string, error) {
-	return app.getData(DATA_VERSION)	
+	return app.getData(DATA_VERSION)
 }
 
 func (app App) getData(key string) (string, error) {
@@ -54,7 +53,7 @@ func (app App) getData(key string) (string, error) {
 	if !exists {
 		return "", ErrNotContainItem
 	}
-	
+
 	return item, nil
 }
 
@@ -68,7 +67,7 @@ func (app *App) Run(args []string) error {
 
 func NewApp() Runner {
 	app := newAppInstance(cli.NewApp(), appData)
-	
+
 	updateCliMetadata(app)
 
 	return &app
@@ -76,8 +75,8 @@ func NewApp() Runner {
 
 func newAppInstance(cliEngine *cli.App, appMetadata map[string]string) *App {
 	return App{
-		cli: cliEngine,
-		metaData: appMetadata,	
+		cli:      cliEngine,
+		metaData: appMetadata,
 	}
 }
 
