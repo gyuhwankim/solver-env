@@ -37,18 +37,18 @@ type App struct {
 }
 
 func (app App) Name() (string, error) {
-	return app.getData(DATA_NAME)
+	return app.MetaDataValue(DATA_NAME)
 }
 
 func (app App) Usage() (string, error) {
-	return app.getData(DATA_USAGE)
+	return app.MetaDataValue(DATA_USAGE)
 }
 
 func (app App) Version() (string, error) {
-	return app.getData(DATA_VERSION)
+	return app.MetaDataValue(DATA_VERSION)
 }
 
-func (app App) getData(key string) (string, error) {
+func (app App) MetaDataValue(key string) (string, error) {
 	item, exists := app.metaData[key]
 	if !exists {
 		return "", ErrNotContainItem
