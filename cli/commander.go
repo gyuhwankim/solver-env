@@ -12,8 +12,8 @@ type Commander interface {
 
 func createCliCommand(cmd Commander) cli.Command {
 	return cli.Command{
-		Name:   cmd.MetaDataValue("Name"),
-		Usage:  cmd.MetaDataValue("Usage"),
+		Name:   cmd.MetaDataValue(NAME_KEY),
+		Usage:  cmd.MetaDataValue(USAGE_KEY),
 		Flags:  cmd.Flags(),
 		Action: cmd.Action,
 	}

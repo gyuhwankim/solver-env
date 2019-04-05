@@ -1,14 +1,14 @@
 package cli
 
 import (
-	"gopkg.in/urfave/cli.v1"			
+	"gopkg.in/urfave/cli.v1"
 )
 
 type initCommand struct {
 	metaData map[string]string
 }
 
-func (cmd initCommand) MetaData(key string) string {
+func (cmd initCommand) MetaDataValue(key string) string {
 	return cmd.metaData[key]
 }
 
@@ -23,8 +23,8 @@ func (cmd initCommand) Action(ctx *cli.Context) error {
 func newInitCommand() *initCommand {
 	return &initCommand{
 		metaData: map[string]string{
-			"Name": "init",
-			"Usage": "Create new root workspace",
+			NAME_KEY:  "init",
+			USAGE_KEY: "Create new root workspace",
 		},
 	}
 }
